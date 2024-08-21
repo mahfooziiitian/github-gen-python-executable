@@ -36,18 +36,27 @@ jobs:
         run: |
           echo ${{steps.upload-executable.outputs.artifact-url}}
           echo ${{steps.upload-executable.outputs.artifact-id}}
+
+  release:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["windows-latest", "ubuntu-latest"]
+    needs: build
+
+    steps:
+      - name: download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: hello-${{ matrix.os }}
+      
       - name: create github release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{github.token}}
         with:
-          tag_name: ${{github.ref}}
-          release_name: Release ${{github.ref}}
-          body: |
-           Changes in this release
-            - First change
-            - Second change
+          tag_name: ${{github.run_number}}
+          release_name: hello-${{ matrix.os }}-${{github.run_number}}
           draft: false
           prerelease: false
-
-
