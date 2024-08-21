@@ -36,3 +36,18 @@ jobs:
         run: |
           echo ${{steps.upload-executable.outputs.artifact-url}}
           echo ${{steps.upload-executable.outputs.artifact-id}}
+      - name: create github release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{github.token}}
+        with:
+          tag_name: ${{github.ref}}
+          release_name: Release ${{github.ref}}
+          body: |
+           Changes in this release
+            - First change
+            - Second change
+          draft: false
+          prerelease: false
+
+
