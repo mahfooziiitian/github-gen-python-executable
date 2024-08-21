@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: hello-${{matrix.os}}
-          path: dist/*
+          path: dist/hello/*
       - name: print atrifact details
         run: |
           echo ${{steps.upload-executable.outputs.artifact-url}}
