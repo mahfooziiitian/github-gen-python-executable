@@ -57,6 +57,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: hello-${{ matrix.os }}
+          
+      - name: Display structure of downloaded files
+        run: ls -R
 
       - name: Create github release
         uses: ncipollo/release-action@v1
