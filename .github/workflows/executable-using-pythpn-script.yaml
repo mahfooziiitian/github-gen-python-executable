@@ -9,24 +9,26 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ['windows-latest', 'ubuntu-latest']
+        os: ["windows-latest", "ubuntu-latest"]
 
     steps:
-        -   name: Check out repository
-            uses: actions/checkout@v4
-        -   name: Set up python
-            id: setup-python
-            uses: actions/setup-python@v5
-            with:
-                python-version: 3.11
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up python
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
 
-        - run: pip install -r requirements.txt pyinstaller
-        - run: pyinstaller src/hello.py
-        
-        -   name: Running the executable
-            run: ./dist/hello/hello
-        -   name: Upload the executable
-            id: upload-executable
-            uses: actions/upload-artifact@v2
-            with:
-                  path: dist/*
+      - run: pip install -r requirements.txt pyinstaller
+      - run: pyinstaller src/hello.py
+
+      - name: Running the executable
+        run: ./dist/hello/hello
+
+      - name: Upload the executable
+        id: upload-executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello
+          path: dist/*
