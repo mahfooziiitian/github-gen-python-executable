@@ -1,4 +1,4 @@
-name: executable-using-python-requirements-new
+name: executable-using-python-requirements-old
 
 on:
    push:
@@ -57,12 +57,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: hello-${{ matrix.os }}
-
-      - name: Create github release 2
-        uses: ncipollo/release-action@v1
+      
+      - name: create github release
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{github.token}}
         with:
+          tag_name: ${{ matrix.os }}-${{github.run_number}}
+          release_name: hello-${{ matrix.os }}-${{github.run_number}}
           draft: false
           prerelease: false
-          artifacts: hello-${{ matrix.os }}
+
