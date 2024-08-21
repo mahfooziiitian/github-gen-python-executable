@@ -1,7 +1,9 @@
 name: executable-using-python-requirements
 
 on:
-  push:
+   push:
+    tags:
+    - '*'
 
 jobs:
   build:
@@ -68,6 +70,9 @@ jobs:
 
       - name: Create github release 2
         uses: ncipollo/release-action@v1
+        env:
+          GITHUB_TOKEN: ${{github.token}}
         with:
+          draft: false
+          prerelease: false
           artifacts: hello-${{ matrix.os }}
-          bodyFile: "body.md"
