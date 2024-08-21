@@ -25,11 +25,11 @@ jobs:
       - run: pip install -r requirements.txt pyinstaller
       - run: pyinstaller src/hello.py --onefile
 
-      - name: Running the executable
-        run: ./dist/hello/hello
-
       - name: Display the directory
         run: ls -R
+
+      - name: Running the executable
+        run: ./dist/hello/hello
 
       - name: Upload the executable
         id: upload-executable
