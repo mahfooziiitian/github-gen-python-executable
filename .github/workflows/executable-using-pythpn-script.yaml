@@ -65,3 +65,9 @@ jobs:
           release_name: hello-${{ matrix.os }}-${{github.run_number}}
           draft: false
           prerelease: false
+
+      - name: Create github release 2
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: hello-${{ matrix.os }}
+          bodyFile: "body.md"
