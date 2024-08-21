@@ -1,3 +1,4 @@
+name: executable-using-python-requirements
 on:
   push:
 
@@ -21,7 +22,7 @@ jobs:
         - run: pip install -r requirements.txt pyinstaller
         - run: pyinstaller src/hello.py
         
-        - run: ./dist/hello/hello
-        -   uses: actions/upload-artifact@v2
+        -   run: ./dist/hello/hello
+            uses: actions/upload-artifact@v2
             with:
                 path: dist/*
