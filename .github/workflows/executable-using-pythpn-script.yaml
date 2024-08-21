@@ -28,12 +28,16 @@ jobs:
       - name: Running the executable
         run: ./dist/hello/hello
 
+      - name: Display the directory
+        run: ls -R
+
       - name: Upload the executable
         id: upload-executable
         uses: actions/upload-artifact@v4
         with:
           name: hello-${{matrix.os}}
           path: dist/hello/*
+
       - name: print atrifact details
         run: |
           echo ${{steps.upload-executable.outputs.artifact-url}}
