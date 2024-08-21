@@ -23,7 +23,7 @@ jobs:
           python-version: 3.11
 
       - run: pip install -r requirements.txt pyinstaller
-      - run: pyinstaller src/hello.py
+      - run: pyinstaller src/hello.py --onefile
 
       - name: Running the executable
         run: ./dist/hello/hello
