@@ -58,11 +58,11 @@ jobs:
         with:
           name: hello-${{ matrix.os }}
 
-      - name: Create github release 2
+      - name: Create github release
         uses: ncipollo/release-action@v1
         env:
           GITHUB_TOKEN: ${{github.token}}
         with:
-          draft: false
-          prerelease: false
+          draft: true
+          prerelease: true
           artifacts: hello-${{ matrix.os }}
