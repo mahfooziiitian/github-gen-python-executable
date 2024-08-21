@@ -1,9 +1,7 @@
 name: executable-using-python-requirements-old
 
 on:
-   push:
-    tags:
-    - '*'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -57,7 +55,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: hello-${{ matrix.os }}
-      
+
       - name: create github release
         uses: actions/create-release@v1
         env:
@@ -67,4 +65,3 @@ jobs:
           release_name: hello-${{ matrix.os }}-${{github.run_number}}
           draft: false
           prerelease: false
-
