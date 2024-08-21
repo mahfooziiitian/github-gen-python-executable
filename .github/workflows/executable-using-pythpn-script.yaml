@@ -72,4 +72,4 @@ jobs:
         with:
           draft: true
           prerelease: true
-          artifacts: hello-${{ matrix.os }}
+          artifacts: hello*
